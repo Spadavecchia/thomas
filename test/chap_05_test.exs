@@ -1,5 +1,6 @@
 defmodule Chap05Test do
   use ExUnit.Case, async: true
+  import ExUnit.CaptureIO
 
   test "simple anonymous function" do
     f = fn (a, b) -> a + b end
@@ -59,5 +60,33 @@ defmodule Chap05Test do
     assert fizzbuzz.(14) == 14
     assert fizzbuzz.(15) == "FizzBuzz"
     assert fizzbuzz.(16) == 16
+  end
+
+  describe "closure" do
+    test "closure" do
+      greeter = fn name -> fn -> "Hello #{name}" end end
+      assert greeter.("Tony").() == "Hello Tony"
+
+      add_n = fn n -> fn other -> n + other end end
+      add_two = add_n.(2)
+      add_five = add_n.(5)
+      assert add_two.(7) == 9
+      assert add_five.(5) == 10
+    end
+
+    test "prefix" do
+      prefix = fn p -> fn text -> "#{p} #{text}" end end
+
+      mrs = prefix.("Mrs")
+      assert mrs.("Smith") == "Mrs Smith"
+      elixir = prefix.("Elixir")
+      assert elixir.("Rocks") == "Elixir Rocks"
+    end
+  end
+
+  test "fn shortcut notation" do
+    assert Enum.map([1, 2, 3, 4], &(&1 + 2)) == [3, 4, 5, 6]
+    io = fn -> Enum.each([1, 2, 3, 4], &IO.inspect/1) end
+    assert capture_io(io) == "1\n2\n3\n4\n"
   end
 end
