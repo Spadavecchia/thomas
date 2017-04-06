@@ -28,6 +28,8 @@ defmodule Thomas.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    []
+    [{:credo, ">= 0.0.0", only: [:dev, :test]},
+     {:dogma, ">= 0.0.0", only: [:dev, :test]},
+     {:dialyxir, "~> 0.5", only: [:dev], runtime: false}]
   end
 end
