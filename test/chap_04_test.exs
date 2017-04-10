@@ -75,7 +75,7 @@ defmodule Chap04Test do
       assert states[:AL] == "Alabama"
       assert states[:TX] == :nil
       assert tony.name == "Tony"
-      catch_error tony.full_name
+      assert {:badkey, :full_name, _} = catch_error(tony.full_name)
     end
 
     test "binaries" do
