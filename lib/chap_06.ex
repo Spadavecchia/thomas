@@ -13,6 +13,13 @@ defmodule Chap06 do
   def factorial(0), do: 1
   def factorial(n) when n > 0, do: factorial(n - 1) * n
 
+  @spec factorial_tail(integer) :: integer
+  def factorial_tail(0), do: 1
+  def factorial_tail(n) when n > 0, do: do_factorial_tail(n, 1)
+  defp do_factorial_tail(0, acc), do: acc
+  defp do_factorial_tail(n, acc), do: do_factorial_tail(n - 1, acc * n)
+
+
   @spec sum_n(integer) :: integer
   def sum_n(0), do: 0
   def sum_n(n), do: n + sum_n(n - 1)

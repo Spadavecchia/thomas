@@ -18,6 +18,14 @@ defmodule Chap06Test do
     assert catch_error(factorial(-8)) == :function_clause
   end
 
+  test "factorial_tail" do
+    assert factorial_tail(0) == 1
+    assert factorial_tail(3) == 6
+    assert factorial_tail(5) == 120
+    assert factorial_tail(7) == 5040
+    assert catch_error(factorial_tail(-8)) == :function_clause
+  end
+
   test "sum_n" do
     assert sum_n(0) == 0
     assert sum_n(2000) == 2_001_000
