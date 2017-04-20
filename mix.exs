@@ -30,6 +30,7 @@ defmodule Thomas.Mixfile do
   defp deps do
     [{:credo, ">= 0.0.0", only: [:dev, :test]},
      {:dogma, ">= 0.0.0", only: [:dev, :test]},
+     {:mix_test_watch, "~> 0.3.3"},
      {:dialyxir, "~> 0.5", only: [:dev], runtime: false}]
   end
 end
