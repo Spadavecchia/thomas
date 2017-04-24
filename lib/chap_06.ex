@@ -11,11 +11,10 @@ defmodule Chap06 do
 
   @spec factorial(integer) :: integer
   def factorial(0), do: 1
-  def factorial(n) when n > 0, do: factorial(n - 1) * n
+  def factorial(n) when n >= 0, do: factorial(n - 1) * n
 
   @spec factorial_tail(integer) :: integer
-  def factorial_tail(0), do: 1
-  def factorial_tail(n) when n > 0, do: do_factorial_tail(n, 1)
+  def factorial_tail(n) when n >= 0, do: do_factorial_tail(n, 1)
   defp do_factorial_tail(0, acc), do: acc
   defp do_factorial_tail(n, acc), do: do_factorial_tail(n - 1, acc * n)
 
