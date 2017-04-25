@@ -23,5 +23,11 @@ defmodule Chap15Test do
       send ping, {self(), :pong}
       assert_receive {_sender, :ping}
     end
+
+    test "pmap" do
+      result = 1..10
+      |> Chap15.pmap(&(&1 * &1))
+      assert result == [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+    end
   end
 end
